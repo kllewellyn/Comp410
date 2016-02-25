@@ -1,0 +1,51 @@
+package main;
+
+public class Assn3Main {
+
+	public static void main(String[] args) {
+
+		BST test = new BinarySearchTree();
+
+		test.insert("beta");
+		test.insert("me");
+		test.insert("alpha");
+		test.insert("is");
+		test.print();
+		test.remove("is");
+		test.print();
+
+		
+		
+//				if (args.length==0)
+//		{
+//			System.out.println("mode 1");
+//			System.out.println("we will do the interactive test driver");
+//		}
+//		else{
+//			String cmd;
+//			String assocData;
+//			System.out.println("mode 2");
+//			System.out.println("here are the args: \n");
+//			int na = args.length;
+//			for (int i = 0; i < na; i++)
+//			{
+//				cmd = args[i];
+//				System.out.println("command: " + cmd);
+//				switch(cmd)
+//				{
+//				case "i":
+//				case "r":
+//				case "c":
+//				case "g":
+//						assocData = args[++i];
+//						System.out.println("assoc: " + assocData);
+//				}
+//				System.out.println();
+//			}
+//			System.out.println();
+//		}
+//
+//	}
+	}
+
+}

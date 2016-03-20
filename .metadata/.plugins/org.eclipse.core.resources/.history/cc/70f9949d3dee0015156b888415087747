@@ -1,0 +1,12 @@
+package main;
+
+public class MinBinHeap implements HeapInterface {
+
+	  // in here go all your data and methods for the heap
+
+	  public MinBinHeap ( ) { // default constructor
+	    // explicitly include this
+	    // we need to have the default constructor
+	    // if you then write others, this one will still be there
+	  }
+	}

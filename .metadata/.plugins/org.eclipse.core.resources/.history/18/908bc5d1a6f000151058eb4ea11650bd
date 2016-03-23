@@ -1,0 +1,11 @@
+package main;
+
+public class AssnBinHeap {
+
+	  public static void main (String[] args) {
+	   MinBinHeap test = new MinBinHeap(new EntryPair("hello", 1));
+
+	  }
+
+	  // anything else you need to add in
+	}

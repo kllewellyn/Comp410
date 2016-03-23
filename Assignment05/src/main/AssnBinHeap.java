@@ -3,19 +3,11 @@ package main;
 public class AssnBinHeap {
 
 	  public static void main (String[] args) {
-	    // your code to create and exercise a min bin heap
-
-	    // thorough testing is your responsibility
-
-	    // you may wish to create an interactive driver
-	    // like we did for BST/SPLT
-	    // you may wish to create methods like 
-	    //    -- print
-	    //    -- sort
-	    //    -- random fill
-	    //    -- etc.
-	    // in order to convince yourself your code
-	    // is doing the right thing
+	   MinBinHeap test = new MinBinHeap(new EntryPair("hello", 3));
+	   
+	   test.insert(new EntryPair("it's", 5));
+	   test.insert(new EntryPair("me", 1));
+	   test.print();
 
 	  }
 

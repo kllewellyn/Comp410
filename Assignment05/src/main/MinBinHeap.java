@@ -4,7 +4,7 @@ public class MinBinHeap implements HeapInterface {
 
 	  // in here go all your data and methods for the heap
 
-	int size, current, end;
+	int size, current, end, parent;
 	EntryPair root;
 	EntryPair[] heap;
 	
@@ -18,35 +18,44 @@ public class MinBinHeap implements HeapInterface {
 	  }
 	  
 	public MinBinHeap(EntryPair e){
-		root = e;
-		size = 1;
-		end = 1;
 		heap = new EntryPair[100];
+		root = e;
+		end = 1;
+		heap[end] = e;
+		end++;
+		size = 1;
+		
 	}
 
 	@Override
 	public void insert(EntryPair entry) {
+		
 		if(size == 0){
 			heap[end] = entry;
-			size++;
 			end++;
+			size++;
 		}
-		else if (size > 1)
+		else if (size >= 1)
 		{
-			heap[end] = entry;
 			size++;
+			heap[end] = entry;
 			end++;
 		}
-		current = end;
-		while((current > 1) && heap[current].getPriority() < heap[current/2].getPriority() ){
+		current = end -1 ;
+		parent = current;
+		while( parent > 1){
+			if(heap[current].getPriority() < heap[current/2].getPriority()){
 			EntryPair temp = new EntryPair();
-			temp = heap[end];
-			heap[end] = heap[end/2];
-			heap[end/2] = temp;
-			current = end/2;
-			if(heap[1].getPriority() == entry.getPriority()){
-				root = entry;
+			temp = heap[current];
+			heap[current] = heap[current/2];
+			heap[current/2] = temp;
 			}
+			current = current/2;
+			if(current == 1){
+				root = heap[current];
+			}
+			parent = current/2;
+//			 System.out.println(parent);
 		}
 		
 	}

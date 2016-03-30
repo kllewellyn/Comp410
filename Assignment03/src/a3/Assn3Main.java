@@ -1,13 +1,12 @@
 package a3;
 
-import java.io.*;
 import java.util.*;
 
 public class Assn3Main {
 
 	public static void main(String[] args) {
 
-		BinarySearchTree bst = new BinarySearchTree();
+		BinarySearchTree bst = new BinarySearchTree();	
 		Scanner keyboard = new Scanner(System.in);
 		String input;
 		if (args.length==0)
@@ -61,14 +60,15 @@ public class Assn3Main {
 					bst.print();
 					break;
 				}
+				System.out.println("Enter a command: ");
+				input = keyboard.next();
 			}
 		}
 		else{
 			String cmd;
-			String assocData;
+		    System.out.println("mode 2");
 			System.out.println("here are the args: \n");
 			int na = args.length;
-
 			for (int i = 0; i < na; i++)
 			{
 				cmd = args[i];
@@ -79,20 +79,20 @@ public class Assn3Main {
 					bst = new BinarySearchTree();
 					break;
 				case "i": 
-					System.out.println("Input String: ");
-					bst.insert(keyboard.next());
+					bst.insert(args[++i]);
+					System.out.println("The string: \"" + args[i] + "\" was inserted.");
 					break;
 				case "r":
-					System.out.println("Input string to remove: ");
-					bst.remove(keyboard.next());
+					bst.remove(args[++i]);
+					System.out.println("The string: \"" + args[i] + "\" was removed.");
 					break;
 				case "c":
-					System.out.println("Input string for contains: ");
-					System.out.println(bst.contains(keyboard.next()));
+					System.out.println(bst.contains(args[++i]));
+					System.out.println("Test of if the string: \"" + args[i] + "\" was contained.");
 					break;
 				case "g":
-					System.out.println("Input String to get: ");
-					System.out.println(bst.get(keyboard.next()).val);
+					System.out.println(bst.get(args[++i]));
+					System.out.println("Got the node with val: \"" + args[i] + "\".");
 					break;
 				case "x":
 					System.out.println(bst.findMax());
@@ -117,8 +117,6 @@ public class Assn3Main {
 					bst.print();
 					break;
 				}
-					assocData = args[++i];
-					System.out.println("assoc: " + assocData);
 				}
 				System.out.println();
 			}
@@ -234,16 +232,18 @@ class BinarySearchTree implements BST{
 	public void remove(String s) {
 		if(contains(s)){
 			removeR(get(s));
+			size--;
 		}
 	}
 
 
 	public void removeR(Node e){
-		size--;
 		Node tempParent = e.parent;
 		if(tempParent == null){
-			e.val = findMin(e.right);
-			removeR(e.right);
+			String temp = findMin(e.right);
+			removeR(get(findMin(e.right)));
+			e.val = temp;
+			
 		}
 		else if(e.left == null && e.right == null){
 			if(tempParent.left == e){

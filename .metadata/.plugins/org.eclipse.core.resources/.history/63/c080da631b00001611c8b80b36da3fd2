@@ -1,0 +1,13 @@
+package assn6;
+
+public class Node {
+	
+	String value;
+	
+	public Node(String v){
+		value = v;
+	}
+	
+	
+
+}

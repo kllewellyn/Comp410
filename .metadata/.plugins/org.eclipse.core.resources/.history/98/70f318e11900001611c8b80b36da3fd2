@@ -1,0 +1,12 @@
+package assn6;
+
+public class Edge {
+	
+	Node front, back;
+	String label;
+	
+	public Edge(String l){
+		
+	}
+
+}

@@ -1,0 +1,16 @@
+package assn6;
+
+public class Node {
+	
+	String value;
+	Edge comeFrom, comeTo;
+	
+	public Node(String v, Edge f, Edge t){
+		value = v;
+		comeFrom = f;
+		comeTo = t;
+	}
+	
+	
+
+}

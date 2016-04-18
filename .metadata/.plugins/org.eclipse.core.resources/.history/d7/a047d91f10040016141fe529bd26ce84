@@ -1,0 +1,138 @@
+package assn6;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+
+public class DiGraph implements DiGraphInterface {
+	
+	HashMap<String, Node> diLabel;
+	HashMap<Long, Node> diId;
+	HashMap<Long, Edge> edgeId;
+	HashMap<String, Edge> startEdge;
+	LinkedList<Node> nodeList;
+	ArrayList<Edge> edgeList;
+	private long numNodes, numEdges;
+	 
+	  // in here go all your data and methods for the graph
+	  // and the topo sort operation
+
+	  public DiGraph ( ) { // default constructor
+		 diLabel = new HashMap<String, Node>();
+		 diId = new HashMap<Long, Node>();
+		 edgeId = new HashMap<Long, Edge>();
+		 nodeList = new LinkedList<Node>();
+		 edgeList = new ArrayList<Edge>();
+		 numNodes = 0;
+		 numEdges = 0;
+	  }
+	  
+
+	@Override
+	public boolean addNode(long idNum, String label) {
+		if(!diLabel.containsKey(label) && !diId.containsKey(idNum)){
+			Node newNode = new Node(label, idNum);
+			diLabel.put(label, newNode);
+			diId.put(idNum, newNode);
+			nodeList.add((int)idNum, newNode);	
+			numNodes++;
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean addEdge(long idNum, String sLabel, String dLabel, long weight, String eLabel) {
+		if(diLabel.containsKey(sLabel) && diLabel.containsKey(dLabel) && !edgeId.containsKey(idNum)){
+			if(!containsEdge(sLabel, dLabel) && !sLabel.equals(dLabel)){
+				Edge newEdge = new Edge(idNum, diLabel.get(sLabel), diLabel.get(dLabel), eLabel, weight);
+				edgeId.put(idNum, newEdge);
+				edgeList.add((int)idNum, newEdge);
+				startEdge.put(sLabel, newEdge);
+				numEdges++;
+				return true;
+			}
+			
+		}
+		return false;
+	}
+	
+	private boolean containsEdge(String sLabel, String dLabel){
+		Edge temp = startEdge.get(sLabel);
+		if(temp == null){
+			return true;
+		}
+		else if(temp != null && temp.front.equals(dLabel)){
+			return true;
+		}
+		return false;
+		
+	}
+
+	@Override
+	public boolean delNode(String label) {
+		if(diLabel.containsKey(label)){
+			Node temp = diLabel.get(label);
+			long id = diLabel.get(label).idNum;
+			for(Edge e: edgeList){
+				if(e.front.equals(label) || e.back.equals(label)){
+					delEdge(e.front.value, e.back.value);
+				}
+			}
+			diLabel.remove(label, temp);
+			diId.remove(id, temp);
+			nodeList.remove(id);
+			numNodes--;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean delEdge(String sLabel, String dLabel) {
+		if(startEdge.containsKey(sLabel)){
+			Edge temp = startEdge.get(sLabel);
+			if (!temp.front.value.equals(dLabel)){
+				return false;
+			}
+			edgeList.remove((int)temp.id);
+			startEdge.remove(sLabel, temp);
+			edgeId.remove(temp.id, temp);
+			numEdges--;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public long numNodes() {
+		return numNodes;
+	}
+
+	@Override
+	public long numEdges() {
+		return numEdges;
+	}
+
+	@Override
+	public void print() {
+	for(Node n: nodeList){
+		System.out.println("(" + n.idNum + ")" + n.value);
+		if(startEdge.containsKey(n.value)){
+		System.out.println("   (" + startEdge.get(n.value).id + ")--" + startEdge.get(n.value).elabel + ":" + 
+								startEdge.get(n.value).weight + "-->" + startEdge.get(n.value).front.value);
+		}
+		
+	}
+		
+		
+	}
+
+	@Override
+	public String[] topoSort() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	  
+	  // rest of your code to implement the various operations
+	}

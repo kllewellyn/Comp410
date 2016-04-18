@@ -1,0 +1,16 @@
+package assn6;
+
+public class Edge {
+	
+	Node front, back;
+	long weight;
+	String elabel;
+	
+	public Edge(long w, Node b, Node f, String label){
+		weight = w;
+		front = f;
+		back = b;
+		elabel = label;
+	}
+
+}

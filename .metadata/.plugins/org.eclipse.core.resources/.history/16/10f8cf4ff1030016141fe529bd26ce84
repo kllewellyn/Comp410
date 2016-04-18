@@ -1,0 +1,15 @@
+package assn6;
+
+public class Edge {
+	
+	Node front, back;
+	long weight;
+	
+	public Edge(long w, Node b, Node f){
+		weight = w;
+		front = f;
+		back = b;
+		
+	}
+
+}

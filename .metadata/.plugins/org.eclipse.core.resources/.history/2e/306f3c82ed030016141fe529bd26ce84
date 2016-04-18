@@ -1,0 +1,16 @@
+package assn6;
+
+public class Node {
+	
+	private String value;
+	private Long id;
+	
+	public Node(String v, Long id){
+		value = v;
+//		from = f;
+//		to = t;
+	}
+	
+	
+
+}
